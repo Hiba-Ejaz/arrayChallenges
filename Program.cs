@@ -5,6 +5,8 @@ Example: int[][] arr = { new int[] {1, 2}, new int[] {2, 1, 5}}
 Expected result: int[] {1,2} since 1 and 2 are both available in sub arrays.
 */
 
+using System.Text;
+
 int[] CommonItems(int[][] jaggedArray)
 {
    List<int> commonElements=new List<int>();
@@ -116,6 +118,42 @@ for(int i=0;i<arr4Inverse.GetLength(0);i++){
     Console.WriteLine();
 }
 
+
+/*Challenge 5. Write a function that accepts a variable number of params of any of these types: 
+string, number. 
+- For strings, join them in a sentence. 
+- For numbers then sum them up. 
+- Finally print everything out. 
+Example: Demo("hello", 1, 2, "world") 
+Expected result: hello world; 3 */
+void Demo(params object[] items)
+{
+    int sum=0;
+     var sentence = new StringBuilder();
+    foreach(object item in items){
+   if(item is string str){
+sentence.Append(str).Append(" ");
+   }
+   if(item is int num){
+    sum=sum+num;
+   }
+    }
+   var AnotherGreet = string.Format(" \"{0}; {1} \" ", sentence, sum);
+    Console.WriteLine(AnotherGreet);
+
+}
+Demo("hello", 1, 2, "world"); //should print out "hello world; 3"
+Demo("My", 2, 3, "daughter", true, "is");//should print put "My daughter is; 5"
+
+
+/* Challenge 6. Write a function to swap 2 objects but only if they are of the same type 
+and if they’re string, lengths have to be more than 5. 
+If they’re numbers, they have to be more than 18. */
+void SwapTwo()
+{
+
+}
+
 /* Challenge 7. Write a function that does the guessing game. 
 The function will think of a random integer number (lets say within 100) 
 and ask the user to input a guess. 
@@ -125,6 +163,16 @@ void GuessingGame()
 
 }
 GuessingGame();
+
+/* Challenge 7. Write a function that does the guessing game. 
+The function will think of a random integer number (lets say within 100) 
+and ask the user to input a guess. 
+It’ll repeat the asking until the user puts the correct answer. */
+// void GuessingGame()
+// {
+
+// }
+// GuessingGame();
 
 /* Challenge 8. Provide class Product, OrderItem, Cart, which make a feature of a store
 Complete the required features in OrderItem and Cart, so that the test codes are error-free */
