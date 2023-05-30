@@ -50,19 +50,54 @@ for(int j=0;j<arr2[i].Length;j++)
     Console.WriteLine(arr2[i][j]);
 }
 }
+
+//alternate method
+void InverseJagged2(ref int[][] jaggedArray)
+{
+    for (int i = 0; i < jaggedArray.Length; i++)
+    {
+        Array.Reverse(jaggedArray[i]);
+    }
+}
+
+int[][] arr = { new int[] { 1, 2 }, new int[] { 1, 2, 3 } };
+InverseJagged(ref arr);
+for (int i = 0; i < arr.Length; i++)
+{
+    Console.WriteLine("revered array");
+    for (int j = 0; j < arr[i].Length; j++)
+    {
+        Console.WriteLine(arr[i][j]);
+    }
+}
+
 /* 
 Challenge 3.Find the difference between 2 consecutive elements of an array.
 For example, int[][] arr = {new int[] {1,2}, new int[]{1,2,3}} 
 Expected result: int[][] arr = {new int[] {-1}, new int[]{-1, -1}}
  */
-void CalculateDiff(int[][] jaggedArray)
+void CalculateDiff(ref int[][] jaggedArray)
 {
 
+    for(int i=0;i<jaggedArray.Length;i++){
+        for(int j=0;j<jaggedArray[i].Length-1;j++){
+            jaggedArray[i][j]= jaggedArray[i][j]-jaggedArray[i][j+1];
+        }
+        Array.Resize(ref jaggedArray[i], jaggedArray[i].Length - 1); 
+}
 }
 int[][] arr3 = { new int[] { 1, 2 }, new int[] { 1, 2, 3 } };
-CalculateDiff(arr3);
+CalculateDiff(ref arr3);
 /* write method to print arr3 */
-
+for (int i = 0; i < arr3.Length; i++)
+{
+    Console.WriteLine("subtracted array");
+    for (int j = 0; j < arr3[i].Length; j++)
+    {
+        Console.WriteLine(arr3[i][j]);
+    }
+     Console.WriteLine();
+}
 
 /* 
 Challenge 4. Inverse column/row of a rectangular array.
