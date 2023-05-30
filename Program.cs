@@ -19,26 +19,37 @@ return commonElements.ToArray();
 int[][] arr1 = { new int[] { 1, 2 }, new int[] { 2, 1, 5 } };
  int[] arr1Common = CommonItems(arr1);
  Console.WriteLine("Common Elements:");
-//  Console.WriteLine(arr1Common);
  foreach (int element in arr1Common)
 {
     Console.WriteLine(element);
 }
-/* write method to print arr1Common */
+
 
 /* 
 Challenge 2. Inverse the elements of a jagged array.
 For example, int[][] arr = {new int[] {1,2}, new int[]{1,2,3}} 
 Expected result: int[][] arr = {new int[]{2, 1}, new int[]{3, 2, 1}}
 */
-void InverseJagged(int[][] jaggedArray)
+void InverseJagged(ref int[][] jaggedArray )
 {
-
+for(int i=0;i<jaggedArray.Length;i++){
+for(int j=0;j<jaggedArray[i].Length-1;j++){
+int temp=jaggedArray[i][j];
+jaggedArray[i][j]=jaggedArray[i][jaggedArray[i].Length-j-1];
+jaggedArray[i][jaggedArray[i].Length-j-1]=temp;
+}
+}
 }
 int[][] arr2 = { new int[] { 1, 2 }, new int[] { 1, 2, 3 } };
-InverseJagged(arr2);
+InverseJagged(ref arr2);
 /* write method to print arr2 */
-
+for(int i=0;i<arr2.Length;i++){
+    Console.WriteLine("swapped array");
+for(int j=0;j<arr2[i].Length;j++)
+{
+    Console.WriteLine(arr2[i][j]);
+}
+}
 /* 
 Challenge 3.Find the difference between 2 consecutive elements of an array.
 For example, int[][] arr = {new int[] {1,2}, new int[]{1,2,3}} 
