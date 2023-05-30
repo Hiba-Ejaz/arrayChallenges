@@ -149,10 +149,38 @@ Demo("My", 2, 3, "daughter", true, "is");//should print put "My daughter is; 5"
 /* Challenge 6. Write a function to swap 2 objects but only if they are of the same type 
 and if they’re string, lengths have to be more than 5. 
 If they’re numbers, they have to be more than 18. */
-void SwapTwo()
+void SwapTwo(object obj1,object obj2)
 {
+    if(obj1.GetType()!=obj2.GetType()){
+        Console.WriteLine("the types of objects are not same");
+    }
+    else if(obj1 is string){
+             string str1 = (string)obj1;
+             string str2 = (string)obj2;
+            if(str1.Length>5&&str2.Length>5){
+                object temp=obj1;
+                obj1=obj2;
+                obj2=temp;
+                Console.WriteLine($"{obj1}  {obj2}");
+            }
+            else{
+                Console.WriteLine("the length is not more than 5");
+            }
 
+    }
+    else{
+        Console.WriteLine("the objects are of not type string");
+    }
 }
+string string1="mother";
+string string2="father";
+SwapTwo(string1,string2);
+SwapTwo("web","development");
+SwapTwo(4,12);
+SwapTwo("Hiba",12);
+
+
+
 
 /* Challenge 7. Write a function that does the guessing game. 
 The function will think of a random integer number (lets say within 100) 
@@ -163,16 +191,6 @@ void GuessingGame()
 
 }
 GuessingGame();
-
-/* Challenge 7. Write a function that does the guessing game. 
-The function will think of a random integer number (lets say within 100) 
-and ask the user to input a guess. 
-It’ll repeat the asking until the user puts the correct answer. */
-// void GuessingGame()
-// {
-
-// }
-// GuessingGame();
 
 /* Challenge 8. Provide class Product, OrderItem, Cart, which make a feature of a store
 Complete the required features in OrderItem and Cart, so that the test codes are error-free */
