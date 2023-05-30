@@ -5,6 +5,7 @@ Example: int[][] arr = { new int[] {1, 2}, new int[] {2, 1, 5}}
 Expected result: int[] {1,2} since 1 and 2 are both available in sub arrays.
 */
 
+using System;
 using System.Text;
 
 int[] CommonItems(int[][] jaggedArray)
@@ -188,7 +189,14 @@ and ask the user to input a guess.
 It’ll repeat the asking until the user puts the correct answer. */
 void GuessingGame()
 {
-
+Random random=new Random();
+int userInput;
+ int randomNumber = random.Next(1, 100);
+do{
+        Console.WriteLine("Enter your guess(1-100)");
+         userInput = Convert.ToInt32(Console.ReadLine());
+ } while(randomNumber!=userInput);
+ Console.WriteLine("your made the right guess");
 }
 GuessingGame();
 
