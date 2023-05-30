@@ -51,15 +51,6 @@ for(int j=0;j<arr2[i].Length;j++)
 }
 }
 
-//alternate method
-void InverseJagged2(ref int[][] jaggedArray)
-{
-    for (int i = 0; i < jaggedArray.Length; i++)
-    {
-        Array.Reverse(jaggedArray[i]);
-    }
-}
-
 int[][] arr = { new int[] { 1, 2 }, new int[] { 1, 2, 3 } };
 InverseJagged(ref arr);
 for (int i = 0; i < arr.Length; i++)
@@ -104,36 +95,25 @@ Challenge 4. Inverse column/row of a rectangular array.
 For example, given: int[,] arr = {{1,2,3}, {4,5,6}}
 Expected result: {{1,4},{2,5},{3,6}}
  */
-// int[,] InverseRec(int[,] recArray)
-// {
-
-// }
-// int[,] arr4 = { { 1, 2, 3 }, { 4, 5, 6 } };
-// int[,] arr4Inverse = InverseRec(arr4);
-/* write method to print arr4Inverse */
-
-/* 
-Challenge 5. Write a function that accepts a variable number of params of any of these types: 
-string, number. 
-- For strings, join them in a sentence. 
-- For numbers then sum them up. 
-- Finally print everything out. 
-Example: Demo("hello", 1, 2, "world") 
-Expected result: hello world; 3 */
-// void Demo()
-// {
-
-// }
-// Demo("hello", 1, 2, "world"); //should print out "hello world; 3"
-// Demo("My", 2, 3, "daughter", true, "is");//should print put "My daughter is; 5"
-
-
-/* Challenge 6. Write a function to swap 2 objects but only if they are of the same type 
-and if they’re string, lengths have to be more than 5. 
-If they’re numbers, they have to be more than 18. */
-void SwapTwo()
+int[,] InverseRec(int[,] recArray)
 {
+   int[,] newRecArray=new int[recArray.GetLength(1),recArray.GetLength(0)];
+for(int i=0;i<recArray.GetLength(1);i++){
+    for(int j=0;j<recArray.GetLength(0);j++){
+        newRecArray[i,j]=recArray[j,i];
+    }                                                                          
+}
+return newRecArray;
+}
 
+int[,] arr4 = { { 1, 2, 3 }, { 4, 5, 6 } };
+int[,] arr4Inverse = InverseRec(arr4);
+for(int i=0;i<arr4Inverse.GetLength(0);i++){
+     Console.WriteLine("row inverted into column");
+    for(int j=0;j<arr4Inverse.GetLength(1);j++){
+        Console.WriteLine(arr4Inverse[i,j]);
+    }
+    Console.WriteLine();
 }
 
 /* Challenge 7. Write a function that does the guessing game. 
