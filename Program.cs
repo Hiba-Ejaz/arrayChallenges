@@ -155,6 +155,19 @@ void SwapTwo(object obj1,object obj2)
     if(obj1.GetType()!=obj2.GetType()){
         Console.WriteLine("the types of objects are not same");
     }
+       else if(obj1 is int){
+             int n1 = Convert.ToInt32(obj1);
+          int n2 = Convert.ToInt32(obj2);
+            if(n1>18&&n2>18){
+                object temp=obj1;
+                obj1=obj2;
+                obj2=temp;
+                Console.WriteLine($"{obj1}  {obj2}");
+            }
+                 else{
+                Console.WriteLine("the figure is less than 18");
+            }
+            }
     else if(obj1 is string){
              string str1 = (string)obj1;
              string str2 = (string)obj2;
@@ -164,6 +177,7 @@ void SwapTwo(object obj1,object obj2)
                 obj2=temp;
                 Console.WriteLine($"{obj1}  {obj2}");
             }
+            
             else{
                 Console.WriteLine("the length is not more than 5");
             }
