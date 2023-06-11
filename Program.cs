@@ -206,6 +206,7 @@ void GuessingGame()
 Random random=new Random();
 int userInput;
  int randomNumber = random.Next(1, 100);
+ Console.WriteLine("random num"+randomNumber);
 do{
         Console.WriteLine("Enter your guess(1-100)");
          userInput = Convert.ToInt32(Console.ReadLine());
@@ -230,20 +231,25 @@ var orderItem4 = new OrderItem(product4, 2);
 var orderItem5 = new OrderItem(product5, 5);
 var orderItem6 = new OrderItem(product2, 2);
 
-// var cart = new Cart();
-// cart.AddToCart(orderItem1, orderItem2, orderItem3, orderItem4, orderItem5, orderItem6);
+var cart = new Cart();
+ cart.AddToCart(orderItem1, orderItem2, orderItem3, orderItem4, orderItem5, orderItem6);
 
 // //get 1st item in cart
-// var firstItem = cart[0];
-// Console.WriteLine(firstItem);
+ var firstItem = cart[0];
+ Console.WriteLine(firstItem);
 
 // //Get cart info
-// cart.GetCartInfo(out int totalPrice, out int totalQuantity);
-// Console.WriteLine("Total Quantity: {0}, Total Price: {1}", totalQuantity, totalPrice);
+ cart.GetCartInfo(out int totalPrice, out int totalQuantity);
+ Console.WriteLine("Total Quantity: {0}, Total Price: {1}", totalQuantity, totalPrice);
+ 
+ Console.WriteLine(cart);
 
-// //get sub array from a range
-// var subCart = cart[1, 3];
-// Console.WriteLine(subCart);
+//get sub array from a range
+ var subCart = cart[1, 3];
+ foreach (var item in subCart)
+{
+    Console.WriteLine(item.ToString());
+}
 
 class Product
 {
@@ -265,7 +271,10 @@ class OrderItem : Product
     {
         this.Quantity = quantity;
     }
-
+    public override string ToString()
+    {
+        return ($"order item Id: {Id} order item Price :{Price} order item Quantity: {Quantity}");
+    }
     /* Override ToString() method so the item can be printed out conveniently with Id, Price, and Quantity */
 }
 
@@ -273,20 +282,63 @@ class Cart
 {
     private List<OrderItem> _cart { get; set; } = new List<OrderItem>();
 
-    /* Write indexer property to get nth item from _cart */
+     public OrderItem this[int index]
+    {
+        get { return _cart[index]; }
 
+    }
+    /* Write indexer property to get nth item from _cart */
+     public List<OrderItem> this[int startIndex,int endIndex]
+    {   
+        get{ 
+        List<OrderItem> subcart=new List<OrderItem>();
+        for(int i=startIndex;i<=endIndex;i++){
+        subcart.Add(_cart[i]);
+        }
+         return subcart ;
+          }
+    }
     /* Write indexer property to get items of a range from _cart */
 
     public void AddToCart(params OrderItem[] items)
     {
+       
+        foreach (var item in items)
+        {
+        var existingItem=_cart.FirstOrDefault(i=>i.Id==item.Id);
+         if(existingItem!=null){
+        existingItem.Quantity++;
+         }
+         else{
+            _cart.Add(item);
+         }   
+        }
         /* this method should check if each item exists --> increase value / or else, add item to cart */
     }
-    /* Write another method called Index */
-
+    /* Write another method called Index */ //couldnot understand the statement here, what to do exactly.
+    public void GetCartInfo(out int totalPrice, out int totalQuantity){
+         totalPrice=0;
+         totalQuantity=0;
+        foreach(OrderItem oi in _cart){
+            totalPrice+=oi.Price*oi.Quantity;
+            totalQuantity+=oi.Quantity;
+        }
+       
+    }
     /* Write another method called GetCartInfo(), which out put 2 values: 
     total price, total products in cart*/
 
     /* Override ToString() method so Console.WriteLine(cart) can print
     id, unit price, unit quantity of each item*/
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        foreach (var item in _cart)
+        {
+            sb.AppendLine(($"order item Id: {item.Id} order item Price :{item.Price} order item Quantity: {item.Quantity}"));
+        }
+        return sb.ToString();
+    }
+
 
 }
