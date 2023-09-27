@@ -150,13 +150,13 @@ Demo("My", 2, 3, "daughter", true, "is");//should print put "My daughter is; 5"
 /* Challenge 6. Write a function to swap 2 objects but only if they are of the same type 
 and if they’re string, lengths have to be more than 5. 
 If they’re numbers, they have to be more than 18. */
-void SwapTwo(object obj1,object obj2)
+void SwapTwo( object obj1, object obj2)
 {
     if(obj1.GetType()!=obj2.GetType()){
         Console.WriteLine("the types of objects are not same");
     }
        else if(obj1 is int){
-             int n1 = Convert.ToInt32(obj1);
+            int n1 = Convert.ToInt32(obj1);
           int n2 = Convert.ToInt32(obj2);
             if(n1>18&&n2>18){
                 object temp=obj1;
